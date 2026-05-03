@@ -1,0 +1,31 @@
+# Dependency folders (sangat besar, jangan di-push)
+node_modules/
+jspm_packages/
+
+# File Environment/Rahasia (PENTING: ini yang tadi memicu error GitHub)
+.env
+.env.local
+.env.*.local
+*.secret
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Docker logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.dockerignore
+
+# Python (untuk script PSO/VRP kamu)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# OS metadata
+.DS_Store
+Thumbs.db
