@@ -1,10 +1,21 @@
 FROM node:20-slim
+
+# aktifkan pnpm
+RUN corepack enable
+
+# hindari error husky di CI
+ENV HUSKY=0
+
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+
+# copy dependency dulu (biar cache optimal)
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile
+
+# copy semua source
 COPY . .
-RUN npm run build
-ENV NODE_ENV=production
-ENV PORT=8080
-EXPOSE 8080
-CMD ["npm", "run", "start", "--", "-p", "8080"]
+
+RUN pnpm build
+
+CMD ["pnpm", "start"]
